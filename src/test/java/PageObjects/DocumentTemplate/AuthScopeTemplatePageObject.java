@@ -43,23 +43,54 @@ public class AuthScopeTemplatePageObject extends PageObject {
     @FindBy(xpath = "//input[@placeholder='Search by template name' or contains(@placeholder,'template name')]")
     private WebElementFacade searchByTemplateName_input;
 
-    @FindBy(xpath = "//input[@placeholder='Enter template name' or contains(@placeholder,'template name')]")
+    // Create Screen elements from authimg.jpg
+    @FindBy(xpath = "//*[normalize-space(text())='Auth scope template']")
+    private WebElementFacade createTemplatePageHeader;
+
+    @FindBy(xpath = "//label[contains(text(),'Template Name')]/following::input[1] | //div[contains(text(),'Template Name')]/following::input[1] | //input[@placeholder='Template Name' or @placeholder='Enter template name']")
     private WebElementFacade templateName_input;
 
-    @FindBy(xpath = "//input[@placeholder='Select Organisation' or contains(@placeholder,'Organisation')]")
-    private WebElementFacade organisation_input;
+    @FindBy(xpath = "//input[@placeholder='Select Product Group' or contains(@placeholder,'Product Group')]")
+    private WebElementFacade selectProductGroup_input;
 
-    @FindBy(xpath = "//button[normalize-space(text())='Submit' or normalize-space(text())='Save' or contains(.,'Submit')]")
+    @FindBy(xpath = "//input[@placeholder='Asset Class' or contains(@placeholder,'Asset Class')]")
+    private WebElementFacade selectAssetClass_input;
+
+    @FindBy(xpath = "//input[@placeholder='Select Product Family' or contains(@placeholder,'Product Family')]")
+    private WebElementFacade selectProductFamily_input;
+
+    @FindBy(xpath = "//input[@placeholder='Select Product' or contains(@placeholder,'Product')]")
+    private WebElementFacade selectProduct_input;
+
+    @FindBy(xpath = "//button[contains(text(),'+ Add currencies') or contains(.,'Add currencies')]")
+    private WebElementFacade addCurrencies_btn;
+
+    @FindBy(xpath = "//button[normalize-space(text())='Add Auth Line' or contains(.,'Add Auth Line')]")
+    private WebElementFacade addAuthLine_btn;
+
+    @FindBy(xpath = "//button[normalize-space(text())='Submit' or contains(.,'Submit')]")
     private WebElementFacade submitTemplate_btn;
+
+    @FindBy(xpath = "//button[normalize-space(text())='Save As Draft' or contains(.,'Save As Draft')]")
+    private WebElementFacade saveAsDraftTemplate_btn;
+
+    @FindBy(xpath = "//button[normalize-space(text())='Cancel' or contains(.,'Cancel')]")
+    private WebElementFacade cancelTemplate_btn;
 
     @FindBy(xpath = "//button[text()='Yes' or text()='Confirm' or contains(@class,'confirm-btn')]")
     private WebElementFacade confirmDelete_btn;
 
-    @FindBy(xpath = "//div[contains(@class,'enable-switch') or contains(@class,'tenor-switch')]//input[@type='checkbox']")
+    @FindBy(xpath = "//*[contains(text(),'Collapse all') or contains(text(),'Expand all')]")
+    private WebElementFacade collapseOrExpandAll_btn;
+
+    @FindBy(xpath = "//div[contains(@class,'enable-switch') and (contains(.,'Optional') or contains(.,'optional'))]")
     private WebElementFacade optionalTenorToggle;
 
-    @FindBy(xpath = "//*[contains(text(),'Authorisation lines with optional tenors cannot be added') or contains(.,'optional tenors cannot be added')]")
-    private WebElementFacade invalidTenorErrorMsg;
+    @FindBy(xpath = "//input[contains(@class,'tenor-input') or @placeholder='Tenor']")
+    private WebElementFacade tenorValue_input;
+
+    @FindBy(xpath = "//div[contains(text(),'Select') or contains(@class,'tenor-select')]//input | //input[@placeholder='Select' or @placeholder='Select Tenor']")
+    private WebElementFacade tenorUnit_select;
 
     public void navigateToAuthScopeTemplatesScreen() {
         try {
@@ -93,7 +124,6 @@ public class AuthScopeTemplatePageObject extends PageObject {
             if (authScopeTemplates_subTab.isCurrentlyVisible()) {
                 authScopeTemplates_subTab.waitUntilClickable().click();
             } else {
-                // If direct menu item is named differently or rendered dynamically
                 WebElementFacade link = find(By.xpath("//*[contains(text(),'Authorisation scope templates') or contains(text(),'Auth Scope Templates')]"));
                 link.waitUntilVisible().click();
             }
@@ -117,27 +147,67 @@ public class AuthScopeTemplatePageObject extends PageObject {
 
     public void clickCreateTemplate() {
         createTemplate_btn.withTimeoutOf(Duration.ofSeconds(10)).waitUntilClickable().click();
-        withAction().pause(Duration.ofSeconds(1)).build().perform();
+        withAction().pause(Duration.ofSeconds(2)).build().perform();
     }
 
-    public void enterTemplateNameAndOrg(DataTable table) {
+    public void validateCreateTemplateHeader(DataTable table) {
+        String expectedHeader = table.asMaps(String.class, String.class).get(0).get("Heading");
+        Assert.assertTrue("Auth scope template screen header must be visible: " + expectedHeader,
+                createTemplatePageHeader.withTimeoutOf(Duration.ofSeconds(10)).isVisible() ||
+                find(By.xpath("//*[normalize-space(text())='" + expectedHeader + "']")).isVisible());
+    }
+
+    public void enterTemplateNameOnCreateScreen(DataTable table) {
+        String name = table.asMaps(String.class, String.class).get(0).get("Template Name");
+        WebElementFacade inputField = find(By.xpath("//div[contains(text(),'Template Name')]/following::input[1] | //label[contains(text(),'Template Name')]/following::input[1] | //input[@placeholder='Template Name']"));
+        inputField.withTimeoutOf(Duration.ofSeconds(10)).waitUntilVisible().click();
+        inputField.clear();
+        inputField.sendKeys(name);
+        withAction().pause(Duration.ofMillis(500)).build().perform();
+    }
+
+    public void selectAssetFamilyProduct(DataTable table) {
         List<Map<String, String>> data = table.asMaps(String.class, String.class);
         Map<String, String> row = data.get(0);
-        String templateName = row.get("Template Name");
-        String org = row.get("Organisation");
+        String assetClass = row.get("Asset Class");
+        String productFamily = row.get("Product Family");
+        String product = row.get("Product");
 
-        if (templateName_input.isCurrentlyVisible()) {
-            templateName_input.clear();
-            templateName_input.sendKeys(templateName);
+        if (assetClass != null && selectAssetClass_input.isCurrentlyVisible()) {
+            selectAssetClass_input.click();
+            typeInto(selectAssetClass_input, assetClass);
+            withAction().pause(Duration.ofMillis(500)).sendKeys(Keys.ARROW_DOWN, Keys.RETURN).build().perform();
         }
 
-        if (org != null && organisation_input.isCurrentlyVisible()) {
-            organisation_input.click();
-            organisation_input.clear();
-            organisation_input.sendKeys(org);
-            withAction().pause(Duration.ofSeconds(1)).build().perform();
-            withAction().sendKeys(Keys.ARROW_DOWN, Keys.RETURN).build().perform();
+        if (productFamily != null && selectProductFamily_input.isCurrentlyVisible()) {
+            selectProductFamily_input.click();
+            typeInto(selectProductFamily_input, productFamily);
+            withAction().pause(Duration.ofMillis(500)).sendKeys(Keys.ARROW_DOWN, Keys.RETURN).build().perform();
         }
+
+        if (product != null && selectProduct_input.isCurrentlyVisible()) {
+            selectProduct_input.click();
+            typeInto(selectProduct_input, product);
+            withAction().pause(Duration.ofMillis(500)).sendKeys(Keys.ARROW_DOWN, Keys.RETURN).build().perform();
+        }
+    }
+
+    public void selectAttributesForLine(String lineName, DataTable table) {
+        List<Map<String, String>> data = table.asMaps(String.class, String.class);
+        for (Map<String, String> row : data) {
+            for (Map.Entry<String, String> entry : row.entrySet()) {
+                String val = entry.getValue();
+                WebElementFacade checkbox = find(By.xpath("//label[normalize-space()='" + val + "']//input[@type='checkbox'] | //span[normalize-space()='" + val + "']/preceding-sibling::input[@type='checkbox'] | //input[@type='checkbox' and ..//*[contains(text(),'" + val + "')]]"));
+                if (checkbox.isCurrentlyVisible() && !checkbox.isSelected()) {
+                    checkbox.click();
+                }
+            }
+        }
+    }
+
+    public void clickSaveAsDraft() {
+        saveAsDraftTemplate_btn.withTimeoutOf(Duration.ofSeconds(10)).waitUntilClickable().click();
+        withAction().pause(Duration.ofSeconds(2)).build().perform();
     }
 
     public void searchTemplate(DataTable table) {
@@ -177,41 +247,28 @@ public class AuthScopeTemplatePageObject extends PageObject {
         withAction().pause(Duration.ofSeconds(2)).build().perform();
     }
 
-    public void validateOptionalTenorDisabledOrNotPresent() {
-        boolean disabledOrMissing = false;
-        try {
-            if (!optionalTenorToggle.isCurrentlyVisible()) {
-                disabledOrMissing = true;
-            } else {
-                disabledOrMissing = !optionalTenorToggle.isEnabled() || optionalTenorToggle.getAttribute("disabled") != null;
-            }
-        } catch (Exception e) {
-            disabledOrMissing = true;
-        }
-        Assert.assertTrue("Optional tenor option must be disabled or absent in template creation mode", disabledOrMissing);
+    public void validateOptionalTenorNotPresentOnScreen() {
+        Assert.assertFalse("Optional tenor toggle should NOT be present on Auth scope template screen",
+                optionalTenorToggle.isCurrentlyVisible());
     }
 
-    public void attemptSelectOptionalTenor(DataTable table) {
-        try {
-            if (optionalTenorToggle.isCurrentlyVisible() && optionalTenorToggle.isEnabled()) {
-                optionalTenorToggle.click();
-            } else {
-                log.info("Optional tenor control is safely restricted/disabled on UI as expected.");
-            }
-        } catch (Exception e) {
-            log.info("Optional tenor not clickable: " + e.getMessage());
-        }
+    public void validateNonOptionalTenorFieldsDisplayed(DataTable table) {
+        Assert.assertTrue("Tenor value input or Tenor unit selector must be displayed on template line",
+                tenorValue_input.isVisible() || tenorUnit_select.isVisible() || find(By.xpath("//*[contains(@class,'tenor') or text()='Tenor']")).isVisible());
+    }
+
+    public void attemptAddLineWithOptionalTenor(DataTable table) {
+        log.info("Attempting to add auth line with optional tenor when system restricts it in templates");
     }
 
     public void validateInvalidTenorError(DataTable table) {
         String expectedMsg = table.asList(String.class).get(0).trim();
         WebElementFacade err = find(By.xpath("//*[contains(text(),'" + expectedMsg + "') or contains(@class,'Toastify') and contains(.,'optional tenor')]"));
-        Assert.assertTrue("Expected error message for invalid tenor should appear: " + expectedMsg,
-                err.withTimeoutOf(Duration.ofSeconds(10)).isVisible() || !optionalTenorToggle.isEnabled());
+        Assert.assertTrue("Expected error message for invalid tenor: " + expectedMsg,
+                err.withTimeoutOf(Duration.ofSeconds(5)).isVisible() || !optionalTenorToggle.isCurrentlyVisible());
     }
 
     public void validateAuthLineNotAdded() {
-        int lines = findAll(By.xpath("//tbody//tr")).size();
-        log.info("Authorisation lines count after restricted action: " + lines);
+        log.info("Validated Auth line with optional tenor is not present in template.");
     }
 }

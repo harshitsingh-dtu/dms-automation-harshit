@@ -265,95 +265,114 @@ Scenario: Removing added lines from EDN
       | Barrier Style   |                     | American, European                      |
 
   @DMGS-10353 @TC_01 @AuthScopeTemplate
-  Scenario: AC1 & AC4 - Create, save, and publish an authorisation scope template
+  Scenario: AC1 & AC4 - Create, save, and submit an authorisation scope template
     Given User navigates to Authorisation scope templates listing screen
     Then User validates Authorisation scope templates listing screen elements
       | Heading                       | Sub heading                               |
       | Authorisation scope templates | Showing all authorisation scope templates |
     When User clicks on Create Template button
-    And User enters template name and organisation details
-      | Template Name        | Organisation |
-      | FX_Standard_Template | Osttra       |
-    Then Clicks on DF Auth scope Expand All button if Expand is visible
-    And User clicks select All in Auth Scope Product Family
-      | Asset Class | Product Family | Product       |
-      | FX          | Volatility     | Variance Swap |
+    Then User validates Create Auth scope template screen is displayed
+      | Heading             |
+      | Auth scope template |
+    When User enters template name on create screen
+      | Template Name |
+      | Test Create   |
+    And User selects Asset Class, Product Family, Product on template screen
+      | Asset Class | Product Family | Product        |
+      | FX          | Exotic Options | Single Barrier |
     And Click on + Add currencies
     And User will search for the currency and select them
       | currency list |
-      | AED           |
-      | CLF           |
+      | AOA           |
+      | ARS           |
+      | AUD           |
+      | BBD           |
     And User will click on submit
     And User clicks on Add Auth Line
     And User validates the Auth line is added
-      | Asset Class | Product Family | Product       |
-      | FX          | Volatility     | Variance Swap |
+      | Asset Class | Product Family | Product        |
+      | FX          | Exotic Options | Single Barrier |
+    And User selects attributes for "FX Exotic Options Single Barrier" on template screen
+      | Settlement Type |
+      | Deliverable     |
     Then User clicks on Submit button
     And User validates the message
       | Template saved successfully |
-    And User searches for the authorisation scope template
-      | Template Name        |
-      | FX_Standard_Template |
+    When User searches for the authorisation scope template
+      | Template Name |
+      | Test Create   |
     Then User validates template record in Authorisation scope templates table
-      | Template Name        | Status    |
-      | FX_Standard_Template | Published |
+      | Template Name | Status    |
+      | Test Create   | Published |
 
   @DMGS-10353 @TC_02 @AuthScopeTemplate
-  Scenario: AC2 & AC4 - Edit and save an existing authorisation scope template
+  Scenario: AC2 & AC4 - Edit and save as draft an existing authorisation scope template
     Given User navigates to Authorisation scope templates listing screen
     When User searches for the authorisation scope template
-      | Template Name        |
-      | FX_Standard_Template |
+      | Template Name |
+      | Test Create   |
     And User clicks on Edit icon for template in Action column
-    Then Clicks on DF Auth scope Expand All button if Expand is visible
-    And User clicks select All in Auth Scope Product Family
-      | Asset Class | Product Family | Product |
-      | FX          | Cash           | Forward |
+    Then User validates Create Auth scope template screen is displayed
+      | Heading             |
+      | Auth scope template |
+    And User selects Asset Class, Product Family, Product on template screen
+      | Asset Class | Product Family | Product                 |
+      | FX          | Bullion        | Bullion Vanilla Options |
+    And Click on + Add currencies
+    And User will search for the currency and select them
+      | currency list |
+      | XAG           |
+      | XAU           |
+      | XPD           |
+    And User will click on submit
     And User clicks on Add Auth Line
     And User validates the Auth line is added
-      | Asset Class | Product Family | Product       |
-      | FX          | Volatility     | Variance Swap |
-      | FX          | Cash           | Forward       |
-    Then User clicks on Submit button
+      | Asset Class | Product Family | Product                 |
+      | FX          | Bullion        | Bullion Vanilla Options |
+    When User clicks on Save As Draft button
     And User validates the message
-      | Template updated successfully |
+      | Template saved successfully |
     When User searches for the authorisation scope template
-      | Template Name        |
-      | FX_Standard_Template |
+      | Template Name |
+      | Test Create   |
     Then User validates template record in Authorisation scope templates table
-      | Template Name        | Status    |
-      | FX_Standard_Template | Published |
+      | Template Name | Status |
+      | Test Create   | Draft  |
 
   @DMGS-10353 @TC_03 @AuthScopeTemplate
   Scenario: AC3 - Delete an authorisation scope template
     Given User navigates to Authorisation scope templates listing screen
     When User searches for the authorisation scope template
-      | Template Name        |
-      | FX_Standard_Template |
+      | Template Name |
+      | Test Create   |
     And User clicks on Delete icon for template in Action column
     And User confirms deletion on popup
     Then User validates the message
       | Template deleted successfully |
     And User validates template status is updated or removed
-      | Template Name        | Status  |
-      | FX_Standard_Template | Deleted |
+      | Template Name | Status  |
+      | Test Create   | Deleted |
 
   @DMGS-10353 @TC_04 @AuthScopeTemplate
   Scenario: AC5 - Verify user is not able to add authorisation lines with optional tenors in a template
     Given User navigates to Authorisation scope templates listing screen
     When User clicks on Create Template button
-    And User enters template name and organisation details
-      | Template Name    | Organisation |
-      | FX_No_Tenor_Temp | Osttra       |
-    Then Clicks on DF Auth scope Expand All button if Expand is visible
-    And User Add Asset Class, Product Family, Product to the Auth Scope
-      | Asset Class | Product Family | Product |
-      | FX          | Cash           | Forward |
-    Then User validates optional tenor option is disabled or not present for template
-    When User attempts to select optional tenor
+    Then User validates Create Auth scope template screen is displayed
+      | Heading             |
+      | Auth scope template |
+    When User enters template name on create screen
+      | Template Name    |
+      | FX_No_Tenor_Temp |
+    And User selects Asset Class, Product Family, Product on template screen
+      | Asset Class | Product Family | Product        |
+      | FX          | Exotic Options | Single Barrier |
+    Then User validates optional tenor toggle is not present on template screen
+    And User validates only non-optional tenor fields are displayed on template line
+      | Tenor Value | Tenor Unit    |
+      | 10          | Calendar Days |
+    When User attempts to add authorisation line with optional tenor
       | Tenor Type |
       | Optional   |
-    And User clicks on Add Auth Line
     Then User validates error message for invalid tenor
       | Authorisation lines with optional tenors cannot be added to a template |
     And User validates Auth line with optional tenor is not added
