@@ -1,0 +1,20 @@
+[
+    {
+        "productFamily": [
+            "ab3e71d5-1f14-4718-aef6-77808b5e3035",
+            "9b1aae4d-9bb4-4430-a9c6-c5baaf03aa4e"
+        ],
+        "delta": true,
+        "nettingType": "LESSER_LS",
+        "excludeCLS": true,
+        "calculationType": "DSL",
+        "uuid": "2b3a0bd9-40f4-4005-86d2-56a280083427",
+        "isEdit": false,
+        "isUpdated": false,
+        "isDeleted": false,
+        "error": false,
+        "isEnabled": true,
+        "bullionTrades": "INCLUDE_METALS",
+        "limitValue": 0
+    }
+]

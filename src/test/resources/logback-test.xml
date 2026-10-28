@@ -1,0 +1,53 @@
+<configuration>
+
+    <!-- Console appender - existing, unchanged -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- File appender - all logs saved to target/logs/hooks-debug.log -->
+    <!-- Archive in Jenkins: archiveArtifacts 'target/logs/*.log'       -->
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>target/logs/hooks-debug.log</file>
+        <append>false</append>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- ============================================================ -->
+    <!-- FIX: Suppress Serenity internal ERROR spam                   -->
+    <!-- "CurrentListener is null" is printed by Serenity internally  -->
+    <!-- as ERROR + full stack trace every time takeScreenshot() or   -->
+    <!-- recordReportData() is called in a @Before hook.              -->
+    <!-- Setting StepEventBus to WARN hides those ERROR lines         -->
+    <!-- without hiding anything useful.                              -->
+    <!-- ============================================================ -->
+    <logger name="net.thucydides.core.steps.StepEventBus" level="WARN" additivity="false">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+    </logger>
+
+    <!-- Hook logs - INFO to both console and file -->
+    <logger name="stepDefinations.Hooks" level="INFO" additivity="false">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+    </logger>
+
+    <!-- Serenity internals -->
+    <logger name="net.serenitybdd" level="INFO">
+        <appender-ref ref="FILE"/>
+    </logger>
+    <logger name="net.thucydides" level="INFO">
+        <appender-ref ref="FILE"/>
+    </logger>
+
+    <!-- Root -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+    </root>
+
+</configuration>

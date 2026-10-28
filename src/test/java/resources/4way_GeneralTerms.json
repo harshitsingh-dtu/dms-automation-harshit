@@ -1,0 +1,11 @@
+{
+  "generalTerms": {
+    "currentEnforcementTime": null,
+    "currentReturnTime": null,
+    "participants": [],
+    "status": "DRAFT",
+    "restrictionStatus": null,
+    "notes": "This is dummy document created for automation. Do not change"
+  },
+  "documentTypeId": "4dcb345e-4611-4a3c-931f-b5325c3df722"
+}

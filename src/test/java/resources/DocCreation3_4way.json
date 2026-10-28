@@ -1,0 +1,47 @@
+{
+  "documentTypeId": "4dcb345e-4611-4a3c-931f-b5325c3df722",
+  "initiatorId": "391a493f-9da4-4b9b-a09d-8a0a681a328c",
+  "allowedCurrency": [
+    "FX",
+    "BULLION"
+  ],
+  "participants": [
+    {
+      "sequence": 1,
+      "sortOrder": 1,
+      "alias": "",
+      "orgTypeId": 1,
+      "leiId": "254900SLCV8KI86BHL86",
+      "leiName": "OSTTRA INDIA SERVICES PRIVATE LIMITED",
+      "fundsData": []
+    },
+    {
+      "sequence": 1,
+      "sortOrder": 2,
+      "alias": "",
+      "orgTypeId": 3,
+      "leiId": "254900SLCV8KI86BHL86",
+      "leiName": "OSTTRA INDIA SERVICES PRIVATE LIMITED",
+      "fundsData": []
+    },
+    {
+      "sequence": 2,
+      "sortOrder": 3,
+      "alias": "",
+      "orgTypeId": 1,
+      "leiId": "6SHGI4ZSSLCXXQSBB395",
+      "leiName": "CITIGROUP INC.",
+      "fundsData": []
+    },
+    {
+      "sequence": 2,
+      "sortOrder": 4,
+      "alias": "",
+      "orgTypeId": 3,
+      "leiId": "6SHGI4ZSSLCXXQSBB395",
+      "leiName": "CITIGROUP INC.",
+      "fundsData": []
+    }
+  ],
+  "createdBy": "Dummy Automation"
+}

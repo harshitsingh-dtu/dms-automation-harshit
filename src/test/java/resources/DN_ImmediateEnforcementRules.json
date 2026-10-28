@@ -1,0 +1,23 @@
+{
+  "enforcementRules": [
+    {
+      "actionTypeId": "1",
+      "scheduledType": null,
+      "scheduleDuration": null,
+      "scheduled": false
+    },
+    {
+      "actionTypeId": "2",
+      "scheduledType": null,
+      "scheduleDuration": null,
+      "scheduled": false
+    },
+    {
+      "actionTypeId": "3",
+      "scheduledType": null,
+      "scheduleDuration": null,
+      "scheduled": false
+    }
+  ],
+  "documentTypeId": "2bf00cd5-9056-41a1-a44d-5eb7a555010d"
+}

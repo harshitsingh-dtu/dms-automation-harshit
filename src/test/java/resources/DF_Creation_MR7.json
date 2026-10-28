@@ -1,0 +1,29 @@
+{
+  "documentTypeId": "2bf00cd5-9056-41a1-a44d-5eb7a555010d",
+  "initiatorId": "3185eb95-e560-4752-b50e-e17261ca04ea",
+  "allowedCurrency": [
+    "FX",
+    "BULLION"
+  ],
+  "participants": [
+    {
+      "sequence": 1,
+      "sortOrder": 1,
+      "alias": "",
+      "orgTypeId": 1,
+      "leiId": "254900SLCV8KI86BHL86",
+      "leiName": "OSTTRA INDIA SERVICES PRIVATE LIMITED",
+      "fundsData": []
+    },
+    {
+      "sequence": 1,
+      "sortOrder": 2,
+      "alias": "",
+      "orgTypeId": 2,
+      "leiId": "549300Y0KRJ81QOQO128",
+      "leiName": "1101214 ONTARIO INC.",
+      "fundsData": []
+    }
+  ],
+  "createdBy": "Dummy Automation"
+}

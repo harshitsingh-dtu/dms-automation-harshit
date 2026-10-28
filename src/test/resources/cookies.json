@@ -1,0 +1,53 @@
+  {
+    "domain": ".traianaops.luminatesec.com",
+    "expirationDate": 1715367222.364623,
+    "hostOnly": false,
+    "httpOnly": true,
+    "name": "ACCEZZIOCOOKIE-LEGACY",
+    "path": "/",
+    "sameSite": null,
+    "secure": true,
+    "session": false,
+    "storeId": null,
+    "value": "b143e8a4-88fb-4da1-bb8e-d5b479770e1c"
+  },
+  {
+    "domain": ".traianaops.luminatesec.com",
+    "expirationDate": 1715367222.364598,
+    "hostOnly": false,
+    "httpOnly": true,
+    "name": "ACCEZZIOCOOKIE",
+    "path": "/",
+    "sameSite": "no_restriction",
+    "secure": true,
+    "session": false,
+    "storeId": null,
+    "value": "b143e8a4-88fb-4da1-bb8e-d5b479770e1c"
+  },
+  {
+    "domain": ".traianaops.luminatesec.com",
+    "expirationDate": 1746860022.364433,
+    "hostOnly": false,
+    "httpOnly": true,
+    "name": "LUMINATELOGININFO",
+    "path": "/",
+    "sameSite": "no_restriction",
+    "secure": true,
+    "session": false,
+    "storeId": null,
+    "value": "eodt0zk_QTiqVl5vFxzs3OHjCYbNuu7BXtHgDdxtZprtF9AsmLUW0y-zQXX8QeIxG0oGADKBDqSY-0zUjRW4YWPiLv0sM3wsD7EnePjwos9q7wCeQpOWvIctZCKqGNKeM_wbFb1Bb7kNR-xoOLljtgbqNJ13B0zuBoau7c1ZiKHHQ6MndGA7TgcwowwQflv28EUwRVQ="
+  },
+  {
+    "domain": ".traianaops.luminatesec.com",
+    "expirationDate": 1746860022.364568,
+    "hostOnly": false,
+    "httpOnly": true,
+    "name": "LUMINATELOGININFO-LEGACY",
+    "path": "/",
+    "sameSite": null,
+    "secure": true,
+    "session": false,
+    "storeId": null,
+    "value": "eodt0zk_QTiqVl5vFxzs3OHjCYbNuu7BXtHgDdxtZprtF9AsmLUW0y-zQXX8QeIxG0oGADKBDqSY-0zUjRW4YWPiLv0sM3wsD7EnePjwos9q7wCeQpOWvIctZCKqGNKeM_wbFb1Bb7kNR-xoOLljtgbqNJ13B0zuBoau7c1ZiKHHQ6MndGA7TgcwowwQflv28EUwRVQ="
+  }
+]

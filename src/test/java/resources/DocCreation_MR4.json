@@ -1,0 +1,38 @@
+{
+  "documentTypeId": "2bf00cd5-9056-41a1-a44d-5eb7a555010d",
+  "initiatorId": "ffbc585f-cd9c-40b4-a744-a1836afd6852",
+  "allowedCurrency": [
+    "FX",
+    "BULLION"
+  ],
+  "participants": [
+    {
+      "sequence": 1,
+      "sortOrder": 1,
+      "alias": "",
+      "orgTypeId": 1,
+      "leiId": "254900SLCV8KI86BHL86",
+      "leiName": "OSTTRA INDIA SERVICES PRIVATE LIMITED",
+      "fundsData": []
+    },
+    {
+      "sequence": 1,
+      "sortOrder": 2,
+      "alias": "",
+      "orgTypeId": 2,
+      "leiId": "7JIRH9K3XRCRM50HTR80",
+      "leiName": "Enbridge Pipelines (Ozark) L.L.C.",
+      "fundsData": []
+    },
+    {
+      "sequence": 1,
+      "sortOrder": 3,
+      "alias": "",
+      "orgTypeId": 3,
+      "leiId": "549300ZLVED0VPNQPO73",
+      "leiName": "3G Fund, L.P.",
+      "fundsData": []
+    }
+  ],
+  "createdBy": "Dummy Automation"
+}

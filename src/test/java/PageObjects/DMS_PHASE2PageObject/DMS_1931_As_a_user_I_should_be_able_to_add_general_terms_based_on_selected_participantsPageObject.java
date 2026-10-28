@@ -1,0 +1,4 @@
+package PageObjects.DMS_PHASE2PageObject;
+
+public class DMS_1931_As_a_user_I_should_be_able_to_add_general_terms_based_on_selected_participantsPageObject {
+}

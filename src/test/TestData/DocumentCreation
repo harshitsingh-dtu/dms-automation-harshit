@@ -1,0 +1,42 @@
+{
+    "documentTypeId": "4dcb345e-4611-4a3c-931f-b5325c3df722",
+    "initiatorId": "88fb7b0e-c88d-4a3b-9adb-b1e596ccc985",
+    "allowedCurrency": [
+        "FX",
+        "BULLION"
+    ],
+    "participants": [
+        {
+            "sequence": 1,
+            "sortOrder": 1,
+            "alias": "",
+            "orgTypeId": 1,
+            "leiId": "XKZZ2JZF41MRHTR1V493",
+            "fundsData": []
+        },
+        {
+            "sequence": 1,
+            "sortOrder": 2,
+            "alias": "",
+            "orgTypeId": 3,
+            "leiId": "549300WSF4GXZIX2IF66",
+            "fundsData": []
+        },
+        {
+            "sequence": 2,
+            "sortOrder": 3,
+            "alias": "",
+            "orgTypeId": 1,
+            "leiId": "2138008E3U4YM1WK1D43",
+            "fundsData": []
+        },
+        {
+            "sequence": 2,
+            "sortOrder": 4,
+            "alias": "",
+            "orgTypeId": 3,
+            "leiId": "254900SRVRIMQ323WH67",
+            "fundsData": []
+        }
+    ]
+}

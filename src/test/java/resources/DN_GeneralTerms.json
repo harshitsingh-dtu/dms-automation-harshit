@@ -1,0 +1,23 @@
+{
+  "generalTerms": {
+    "referenceDate": "08/22/2026",
+    "maIsda": "12/20/2026",
+    "maGiveup": "12/31/2026",
+    "emta": "12/20/2026",
+    "firstIssueDate": "08/25/2026",
+    "currentIssueDate": "08/15/2026",
+    "currentReturnTime": "06/20/2026 00:00:00",
+    "currentEnforcementTime": null,
+    "notes": null,
+    "rejectionReason": null,
+    "participants": [],
+    "physicallySettledBullion": false,
+    "manualPdfApprovalEmail": null,
+    "allNull": false,
+    "status": "DRAFT",
+    "restrictionStatus": null
+  },
+  "documentTypeId": "2bf00cd5-9056-41a1-a44d-5eb7a555010d",
+  "historicFlag": false,
+  "historicDate": null
+}

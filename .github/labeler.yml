@@ -1,0 +1,6 @@
+infrastructure:
+  - *.tf
+
+documentation:
+  - README.md
+  - ./*.md

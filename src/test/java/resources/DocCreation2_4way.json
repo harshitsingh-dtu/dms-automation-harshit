@@ -1,0 +1,47 @@
+{
+  "documentTypeId": "4dcb345e-4611-4a3c-931f-b5325c3df722",
+  "initiatorId": "205a0b43-d3db-4193-a0f5-d3d97ec4332f",
+  "allowedCurrency": [
+    "FX",
+    "BULLION"
+  ],
+  "participants": [
+    {
+      "sequence": 1,
+      "sortOrder": 1,
+      "alias": "",
+      "orgTypeId": 1,
+      "leiId": "254900SLCV8KI86BHL86",
+      "leiName": "OSTTRA INDIA SERVICES PRIVATE LIMITED",
+      "fundsData": []
+    },
+    {
+      "sequence": 1,
+      "sortOrder": 2,
+      "alias": "",
+      "orgTypeId": 3,
+      "leiId": "529900PQNOEZ0U8A2W75",
+      "leiName": "Rolf Küstner e.K.",
+      "fundsData": []
+    },
+    {
+      "sequence": 2,
+      "sortOrder": 3,
+      "alias": "",
+      "orgTypeId": 1,
+      "leiId": "529900PQNOEZ0U8A2W75",
+      "leiName": "Rolf Küstner e.K.",
+      "fundsData": []
+    },
+    {
+      "sequence": 2,
+      "sortOrder": 4,
+      "alias": "",
+      "orgTypeId": 3,
+      "leiId": "254900SLCV8KI86BHL86",
+      "leiName": "OSTTRA INDIA SERVICES PRIVATE LIMITED",
+      "fundsData": []
+    }
+  ],
+  "createdBy": "Dummy Automation"
+}
