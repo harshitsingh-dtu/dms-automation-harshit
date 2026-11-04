@@ -14,7 +14,7 @@ public class DocumentTemplateSaveAsDraftPageStep extends PageObject {
         documentTemplateCreatePageObject.typeinto_forammendment();
         documentTemplateCreatePageObject.typeinto_fortermination();
     }
-    @And("^User clicks on Save As Draft button$")
+    @And("^User clicks on Save As Draft button for document template$")
     public void user_click_save_as_draft_for_document_template() {
         documentCreateNewPageObject.startContinuousToastInterceptor();
         documentTemplateCreatePageObject.clickSaveAsDraftbtn();
